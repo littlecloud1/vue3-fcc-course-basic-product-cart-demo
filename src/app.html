@@ -23,7 +23,7 @@
             <span>Past Orders</span>
           </a>
         </nav>
-        <a href="#" @click= class="top-bar-cart-link">
+        <a href="#" @click="toggleSidebar()" class="top-bar-cart-link">
           <i class="icofont-cart-alt icofont-1x"></i>
           <span>Cart (0)</span>
         </a>
@@ -172,7 +172,7 @@
       let app = Vue.createApp({
         data() {
           return {
-            showSidebar: false,
+            showSidebar: true,
             inventory: {
               carrots: 0,
               pineapples: 0,
