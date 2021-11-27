@@ -23,7 +23,7 @@
             <span>Past Orders</span>
           </a>
         </nav>
-        <a href="#" @click="toggleSidebar()" class="top-bar-cart-link">
+        <a href="#" @click="toggleSidebar" class="top-bar-cart-link">
           <i class="icofont-cart-alt icofont-1x"></i>
           <span>Cart (0)</span>
         </a>
@@ -161,7 +161,7 @@
 
       </main>
 
-      <sidebar v-if="showSidebar"/>
+      <sidebar v-if="showSidebar" :toggle="toggleSidebar"/>
       <footer>
       </footer>
 
@@ -172,7 +172,7 @@
       let app = Vue.createApp({
         data() {
           return {
-            showSidebar: true,
+            showSidebar: false,
             inventory: {
               carrots: 0,
               pineapples: 0,
@@ -196,7 +196,10 @@
           }
         },
       })
+      //you don't have access to toggleSidebar in this component template
+      //pass it as a props
       app.component('sidebar', {
+        props: ['toggle'],
         template: `
       <aside class="cart-container">
         <div class="cart">
@@ -205,7 +208,7 @@
               Cart
               <i class="icofont-cart-alt icofont-1x"></i>
             </span>
-            <button class="cart-close">&times;</button>
+            <button @click="toggle" class="cart-close">&times;</button>
           </h1>
 
           <div class="cart-body">
